@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Umfrage | Übersicht</title>
+</head>
+<body>
+    {{ foreach ($viewData["surveys"] as $survey): }}
+        <tr>
+            <td> {{ $survey->getName() }} </td>
+            <td> <a href="{{ \Framework\Http\Url::Content('~/Survey/' . $survey->getId()) }}"> zur Umfrage </a>
+        </tr>
+    {{ endforeach }}
+</body>
+</html>
