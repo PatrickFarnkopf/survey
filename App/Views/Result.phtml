@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Umfrage</title>
+    <meta charset="utf-8" /> 
+</head>
+<body>
+
+    <h2> {{ $viewData['survey']->getName() }} </h2>
+
+    <table>
+        <tr>
+            <th>Bezeichnung</th>
+            <th>Stimmen</th>
+        </tr>
+        {{ foreach ($viewData['choices'] as $choice): }}
+        <tr>
+            <td>{{ $choice->getName() }}</td>
+            <td>{{ $choice->getCount() }}</td>
+        </tr>
+        {{ endforeach }}
+    </table>
+
+    <br>
+
+    <a href="{{ \Framework\Http\Url::Content('~') }}"> Zurück zur Übersicht </a>
+
+</body>
+</html>
