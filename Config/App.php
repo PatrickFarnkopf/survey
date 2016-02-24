@@ -9,4 +9,6 @@ namespace Config\App
     const MYSQL_USERNAME        = 'root';
     const MYSQL_PASSWORD        = '';
     const MYSQL_DATABASE        = 'survey';
+
+    const LOGIN_PAGE_ROUTE      = "User/Login";
 }

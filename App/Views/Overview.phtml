@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Umfrage | Übersicht</title>
-    <meta charset="utf-8" /> 
-</head>
-<body>
-    <table>
-        {{ foreach ($viewData["surveys"] as $survey) : }}
-            <tr>
-                <td> {{ $survey->getName() }} </td>
-                <td> <a href="{{ \Framework\Http\Url::Content('~/Survey/' . $survey->getId()) }}"> zur Umfrage </a> </td>
-            </tr>
-        {{ endforeach }}
-    </table>
-</body>
-</html>
+@SET_LAYOUT 'Layout/DefaultLayout';
+
+<h2>Aktuelle Umfragen</h2>
+
+<table>
+    {{ foreach ($viewData["surveys"] as $survey) : }}
+        <tr>
+            <td> {{ $survey->getName() }} </td>
+            <td> <a href="{{ \Framework\Http\Url::Content('~/Survey/' . $survey->getId()) }}" class="button"> zur Umfrage </a> </td>
+        </tr>
+    {{ endforeach }}
+</table>

@@ -1,26 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Umfrage</title>
-    <meta charset="utf-8" /> 
-</head>
-<body>
+@SET_LAYOUT 'Layout/DefaultLayout';
 
-    <h2> {{ $viewData['survey']->getName() }} </h2>
+<h2> {{ $viewData['survey']->getName() }} </h2>
 
-    <table>
-        {{ foreach ($viewData['choices'] as $choice): }}
+{{ if ($viewData['userChoice'] != 0): }}
+    <h3> Du hast mit <b style="color: red">{{ $viewData['userChoiceStr'] }}</b> gestimmt! </h3>
+{{ endif }}
+
+<table>
+    {{ foreach ($viewData['choices'] as $choice): }}
         <tr>
             <td>{{ $choice->getName() }}</td>
-            <td> <a href="{{ \Framework\Http\Url::Content('~/Survey/Vote/' . $choice->getId()) }}"> abstimmen </a> </td>
+            <td> 
+                {{ if ($viewData['userChoice'] == 0): }}
+                    <a href="{{ \Framework\Http\Url::Content('~/Survey/Vote/' . $choice->getId()) }}" class="button button-info"> abstimmen </a> 
+                {{ else: }}
+                    <a href="javascript:void()" onclick="alert('Du hast bereits abgestimmt!');" class="button button-info disabled"> abstimmen </a>
+                {{ endif }}
+            </td>
         </tr>
-        {{ endforeach }}
-    </table>
+    {{ endforeach }}
+</table>
 
-    <br>
+<br>
 
-    <a href="{{ \Framework\Http\Url::Content('~') }}"> Zurück zur Übersicht </a> <span style="padding: 0px 10px">|</span>
-    <a href="{{ \Framework\Http\Url::Content('~/Survey/Result/' . $viewData['survey']->getId()) }}"> Ergebnis anzeigen </a>
-
-</body>
-</html>
+<a href="{{ \Framework\Http\Url::Content('~/Survey/Overview') }}" class="button"> Zurück zur Übersicht </a>
+<a href="{{ \Framework\Http\Url::Content('~/Survey/Result/' . $viewData['survey']->getId()) }}" class="button"> Ergebnis anzeigen </a>

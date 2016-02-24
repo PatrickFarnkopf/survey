@@ -26,6 +26,15 @@ class ControllerHandler
         return $obj;
     }
 
+    public function redirectToRoute(Route $route, Request $request)
+    {
+        $controllerName = "\\App\\Controllers\\" . $route->getControllerName();
+        $obj = new $controllerName();
+        $obj->setRequest($request);
+        $obj->setRoute($route);
+        return $obj;
+    }
+
     private static $instance;
 
     /**

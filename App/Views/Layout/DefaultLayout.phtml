@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Umfrage | Übersicht</title>
+    <meta charset="utf-8" /> 
+    <link rel="stylesheet" type="text/css" href="{{ \Framework\Http\Url::Content('~/css/main.css') }}">
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <ul>
+                <li><a href="{{ \Framework\Http\Url::Content('~/Portal') }}">Home</a></li>
+                <li><a href="{{ \Framework\Http\Url::Content('~/Survey/Overview') }}">Umfragen</a></li>
+
+                {{ if (\Framework\Http\Session::instance()->ContainsKey("authenticated")): }}
+                    <li><a href="{{ \Framework\Http\Url::Content('~/User/Logout') }}">Abmelden</a></li>
+                {{ else: }}
+                    <li><a href="{{ \Framework\Http\Url::Content('~/User/Login') }}">Anmelden</a></li>
+                {{ endif }}
+            </ul>
+        </div>
+    </header>
+    
+    <div style="clear: both; padding: 40px 0px;">&nbsp;</div>
+
+    <div class="content">
+    @BODY_SECTION
+    </div>
+</body>
+</html>

@@ -125,7 +125,7 @@ abstract class DbModel
 
         foreach ($where as $cell => $data)
         {
-            $condition[] = $cell . " = " . $data;
+            $condition[] = $cell . " = '" . $data . "'";
         }
 
         if (count($condition) > 0)

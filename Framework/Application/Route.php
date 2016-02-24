@@ -17,6 +17,7 @@ class Route
     private $method;
     private $isDefaultRoute;
     private $parameters = [];
+    private $authRequired;
 
     private function __construct($routeName, $controllerName, $action, $method) 
     {
@@ -36,6 +37,16 @@ class Route
     {
         $this->isDefaultRoute = true;
         return $this;
+    }
+
+    public function authRequired()
+    {
+        $this->authRequired = true;
+    }
+
+    public function isAuthRequired()
+    {
+        return $this->authRequired;
     }
 
     public function getAction()

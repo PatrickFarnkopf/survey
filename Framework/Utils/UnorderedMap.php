@@ -33,7 +33,6 @@ abstract class UnorderedMap
         {
             throw new Exception("key doesn't exist");
         }
-
         return $this->data[$key];
     }
 
@@ -77,6 +76,6 @@ abstract class UnorderedMap
 
     public function First()
     {
-        return array_values($this->data)[0];
+        return count($this->data) > 0 ? array_values($this->data)[0] : null;
     }
 }

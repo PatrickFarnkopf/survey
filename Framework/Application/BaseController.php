@@ -8,15 +8,12 @@ use Framework\Http\Url;
 use Framework\Kernel;
 use Framework\Views\Patemp\Template;
 
+use App\Middleware\Authentication;
+
 abstract class BaseController
 {
-    /**
-     * @var Request
-     */
     protected $request;
-
     protected $route;
-
     public $viewData = [];
 
     public function setRequest(Request $request)
@@ -31,6 +28,15 @@ abstract class BaseController
 
     public function executeAction()
     {
+        if ($this->route->isAuthRequired() && !Authentication::isAuthenticated())
+        {
+            $loginRoute = Route::findRoute(\Config\App\LOGIN_PAGE_ROUTE, Route::METHOD_GET);
+            $obj = ControllerHandler::instance()->redirectToRoute($loginRoute, $this->request);
+            $action = $loginRoute->getAction();
+            $parameters = Route::getRouteParameters($this->route, $this->request);
+            return call_user_method_array($action, $obj, $parameters);
+        }
+
         $action = $this->route->getAction();
         $parameters = Route::getRouteParameters($this->route, $this->request);
         return call_user_method_array($action, $this, $parameters);

@@ -1,29 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Umfrage</title>
-    <meta charset="utf-8" /> 
-</head>
-<body>
+@SET_LAYOUT 'Layout/DefaultLayout';    
 
-    <h2> {{ $viewData['survey']->getName() }} </h2>
+<h2> {{ $viewData['survey']->getName() }} </h2>
 
-    <table>
-        <tr>
-            <th>Bezeichnung</th>
-            <th>Stimmen</th>
-        </tr>
-        {{ foreach ($viewData['choices'] as $choice): }}
+<table>
+    <tr>
+        <th>Bezeichnung</th>
+        <th>Stimmen</th>
+    </tr>
+    {{ foreach ($viewData['choices'] as $choice): }}
         <tr>
             <td>{{ $choice->getName() }}</td>
-            <td>{{ $choice->getCount() }}</td>
+            <td>
+                <meter value="{{ $choice->getCount() }}" min="0" max="{{ $viewData['voteCount'] }}"></meter>
+                ({{ $choice->getCount() }})
+            </td>
         </tr>
-        {{ endforeach }}
-    </table>
+    {{ endforeach }}
+</table>
 
-    <br>
+<br>
 
-    <a href="{{ \Framework\Http\Url::Content('~') }}"> Zurück zur Übersicht </a>
-
-</body>
-</html>
+<a href="{{ \Framework\Http\Url::Content('~/Survey/Overview') }}" class="button"> Zurück zur Übersicht </a>

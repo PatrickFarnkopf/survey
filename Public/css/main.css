@@ -1,0 +1,114 @@
+.button {
+    padding: 5px 12px;
+    display: inline-block;
+    background-color: #04B404;
+    border-radius: 4px;
+    text-decoration: none;
+    color: white;
+    border: 1px solid #222;
+}
+
+.button-info {
+    background-color: #2E2EFE;
+}
+
+.button:hover {
+    box-shadow: 0 0 3px black;
+    transition: 0.2s ease;
+}
+
+.button-login {
+    background-color: #00FFFF;
+    color: #0B615E;
+    font-weight: bold;
+    padding: 11px 50px;
+    border: 1px solid #0B615E;
+}
+
+.disabled {
+    background-color: #888 !important;
+}
+
+.disabled:hover {
+    box-shadow: none;
+    transition: none;
+}
+
+body {
+    background-color: #bbb;
+    margin: 0;
+    padding: 0;
+}
+
+td {
+    padding: 4px 10px;
+}
+
+.nav ul {
+    list-style: none;
+    background-color: #444;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+.nav li {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2em;
+    line-height: 40px;
+    height: 40px;
+    border-bottom: 1px solid #888;
+}
+ 
+.nav a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    transition: .3s background-color;
+}
+ 
+.nav a:hover {
+    background-color: #005f5f;
+}
+ 
+.nav a.active {
+    background-color: #fff;
+    color: #444;
+    cursor: default;
+}
+ 
+@media screen and (min-width: 600px) {
+    .nav li {
+        width: 120px;
+        border-bottom: none;
+        height: 50px;
+        line-height: 50px;
+        font-size: 1.4em;
+    }
+
+    .nav li {
+        display: inline-block;
+        margin-right: -4px;
+    }
+}
+
+.content {
+    width: 600px;
+    margin: 0px auto;
+    padding: 20px 35px;
+    background-color: #eee;
+}
+
+.form-label {
+    display: block;
+    font-weight: bold;
+    font-weight: 14px;
+    margin-top: 8px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 90%;
+    height: 30px;
+    font-size: 14px;
+    line-height: 25px;
+}

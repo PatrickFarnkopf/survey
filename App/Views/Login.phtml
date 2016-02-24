@@ -1,0 +1,9 @@
+@SET_LAYOUT 'Layout/DefaultLayout';
+
+<form action="{{ \Framework\Http\Url::Content('~/User/Login') }}" method="post">
+    <label class="form-label">Benutzername</label>
+    <input type="text" name="username" />
+    <label class="form-label">Passwort</label>
+    <input type="password" name="password" /> <br><br>
+    <input type="submit" value="Login" class="button button-login" />
+</form>
