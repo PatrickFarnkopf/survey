@@ -17,6 +17,11 @@ abstract class UnorderedMap
         $this->data[$key] = $value;
     }
 
+    public function IsEmpty()
+    {
+        return count($this->data) == 0;
+    }
+
     public function AddRange(array $data)
     {
         if (count(array_intersect_key(array_flip($data), $this->data)) !== 0)

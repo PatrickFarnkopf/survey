@@ -30,4 +30,26 @@ class UserController extends BaseController
         Authentication::logout();
         return $this->redirectAction("~/");
     }
+
+    public function register()
+    {
+        return $this->view("Register");
+    }
+
+    public function processRegistration()
+    {
+        $user = new User();
+        $user->setUsername($this->request->getPost()['username']);
+
+        if ($user->get($user->getUsername())->IsEmpty())
+        {
+            $user->setPassword($this->request->getPost()['password']);
+            $user->save();
+
+            Authentication::authenticate($user);
+            return $this->redirectAction("~/");
+        }
+
+        return $this->redirectAction("~/Register")
+    }
 }

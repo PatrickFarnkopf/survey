@@ -11,7 +11,7 @@ abstract class DbModel
 
     public function __construct()
     {
-        $this->tableName = $this->getClassName();
+        $this->tableName = strtolower($this->getClassName());
         $this->loadMapping();
     }
 
@@ -47,7 +47,6 @@ abstract class DbModel
         $this->isNew = false;
         $condition = DbModel::buildWhere($where);
         $query = "SELECT * FROM $this->tableName " . ($condition != null ? 'WHERE ' . $condition : "");
-
         $datastore = new DbModelStore();
 
         $itr = 0;
