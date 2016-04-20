@@ -11,4 +11,4 @@ Route::get("User/Login", "UserController", "login");
 Route::get("User/Logout", "UserController", "logout")->authRequired();;
 Route::post("User/Login", "UserController", "processLogin");
 Route::get("Register", "UserController", "register");
-Route::post("Register", "UserController", "processRegister");
+Route::post("Register", "UserController", "processRegistration");

@@ -1,0 +1,22 @@
+@SET_LAYOUT 'Layout/DefaultLayout';
+
+<ul class="errors">
+	{{ foreach ($viewData['errors'] as $error): }}
+		<li>{{ $error }}</li>
+	{{ endforeach }}
+</ul>
+
+<form action="{{ \Framework\Http\Url::Content('~/Register') }}" method="post">
+	<label for="username">Benutzername</label>
+	<input type="text" name="username" id="username" />
+
+	<label for="password">Passwort</label>
+	<input type="password" name="password" id="password" />
+
+	<label for="password_confirm">Passwort bestätigen</label>
+	<input type="password" name="password_confirm" id="password_confirm" />
+
+	<br><br>
+
+	<input type="submit" name="registerSubmit" value="registrieren" class="button" />
+</form>

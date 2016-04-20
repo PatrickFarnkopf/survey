@@ -10,6 +10,11 @@ use Framework\Http\Session;
 
 class UserController extends BaseController
 {
+    public function __construct()
+    {
+        $this->viewData['errors'] = [];
+    }
+
     public function login()
     {
         return $this->view("Login");
@@ -38,18 +43,31 @@ class UserController extends BaseController
 
     public function processRegistration()
     {
+        $errors = [];
+
         $user = new User();
         $user->setUsername($this->request->getPost()['username']);
+        $user->setPassword($this->request->getPost()['password']);
 
-        if ($user->get($user->getUsername())->IsEmpty())
+        if (!$user->get(['username' => $user->getUsername()])->IsEmpty())
         {
-            $user->setPassword($this->request->getPost()['password']);
-            $user->save();
-
-            Authentication::authenticate($user);
-            return $this->redirectAction("~/");
+            $errors[] = "Benutzername existiert bereits!";
         }
 
-        return $this->redirectAction("~/Register")
+        if ($user->getPassword() !== $this->request->getPost()['password_confirm'])
+        {
+            $errors[] = "Die eingegebenen Passwörter stimmen nicht überein!";
+        }
+
+        if (count($errors) === 0)
+        {
+            $user->save();
+            Authentication::authenticate($user);
+            return $this->redirectAction("~/Login");
+        }
+
+        $this->viewData['errors'] = $errors;
+
+        return $this->view("Register");
     }
 }

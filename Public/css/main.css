@@ -112,3 +112,11 @@ input[type="password"] {
     font-size: 14px;
     line-height: 25px;
 }
+
+.errors {
+    margin-bottom: 20px;
+}
+
+.errors li {
+    color: red;
+}
